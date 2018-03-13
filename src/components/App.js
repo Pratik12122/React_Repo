@@ -1,13 +1,7 @@
 import React from 'react';
-import { render } from 'react-dom';
 import Aux from '../hoc/Aux';
 import Profile from './profile.jsx';
 import AddProfile from './AddProfile';
-
-const styles = {
-    fontFamily: 'sans-serif',
-    textAlign: 'center',
-};
 
 class App extends React.Component {
     constructor(props){
@@ -26,22 +20,18 @@ class App extends React.Component {
         }
     }
     
-    addUser = (e) => {
-        var user = {
-                 name:'Max',
-                 age:'30',
-                 bio:'Front End Dev with react & redux' 
-        }
+    addUser = (user) => {
         this.setState({
                 profiles : this.state.profiles.concat([user])
         });
     }
     
     render(){
-        let profiles = this.state.profiles.map(profile => {
+        let profiles = this.state.profiles.map((profile,index) => {
             return  <Profile name={profile.name}
                         age={profile.age}
-                        bio={profile.bio}/>
+                        bio={profile.bio}
+                        key={index}/>
         })
         return (
             <Aux>
